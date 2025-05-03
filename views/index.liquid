@@ -1,0 +1,100 @@
+{% render 'partials/head.liquid' %}
+<link rel="stylesheet" href="/styles/home.css">
+
+<main class="home-main">
+
+
+    <section class="qatar-museum home-page">
+        <div class="hero-container">
+            <div class="hero-img">
+                <img src="/assets/images/hero.png" alt="">
+            </div>
+            <div class="gallery-hero-img">
+                <h2><a href="/gallery">Visit the gallery</a></h2>
+                <img src="/assets/images/galleryprev.png" alt="">
+            </div>
+        </div>
+        <div class="visit">
+            <a href="https://qm.org.qa/en/stories/all-stories/visiting-qatar-museums-during-ramadan/"><h3>Visiting Qatar Museum during ramadan</h3></a>
+            <p>read</p>
+        </div>
+
+        <div class="welcome">
+            <h3>Welcome to Qatar Museums</h3>
+            <p>Stop by one of our world-famous museums, explore a heritage site, or check out some public art. <a href="https://qm.org.qa/en/visit/">Plan your visit today!</a></p>
+        </div>
+
+<!--If there is data on this, <li> can be looped just like in .all-objects -->
+        <div class="musuems-container">
+            <ul>
+                <li>
+                    <article class="museum nmq">
+                        <img src="/assets/images/museum.jpg" alt="">
+                        <h2><a href="">National Museum Of Qatar</a></h2>
+                        <h6>Show more</h6>
+                    </article>
+                </li>
+                <li>
+                    <article class="museum mia">
+                        <img src="/assets/images/museum.jpg" alt="">
+                        <h2><a href="">Museum Of Islamic Art</a></h2>
+                        <h6>Show more</h6>
+                    </article>
+                </li>
+                <li>
+                    <article class="museum mathaf">
+                        <img src="/assets/images/museum.jpg" alt="">
+                        <h2><a href="">Mathaf: Arab Museum Of Modern Art</a></h2>
+                        <h6>Show more</h6>
+                    </article>
+                </li>
+                <li>
+                    <article class="museum olympic">
+                        <img src="/assets/images/museum.jpg" alt="">
+                        <h2><a href="">3-2-1 Qatar Olympic And Sports Museum</a></h2>
+                        <h6>Show more</h6>
+                    </article>
+                </li>
+                <li>
+                    <article class="museum see-more">
+                        <a href=""><h2>See all our museums and venues</h2></a>
+                    </article>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="exhibition-container">
+
+        <img src="" alt="Placeholder for upcoming exhibition">
+
+        <article class="exhibition-text-container">
+            <h5>Exhibition</h5>
+            <a href=""><h2> Zidane A 21st Century Portrait</h2></a>
+            <h6> Still on View</h6>
+            <div class="exhibition-location">
+                <p> 3-2-1 Qatar Olympic and Sports Museum</p>
+            </div>
+        </article>
+
+    </section>
+
+    <section class="explore-our-stories-container">
+        <article>
+            <img src="" alt="">
+            <a href=""><h3>Gallery highlight: Horseback Hunting With The Great</h3></a>
+            <h6>By Ali alhuzeri</h6>
+            <div class="exhibition-location">
+                <p> 3-2-1 Qatar Olympic and Sports Museum</p>
+            </div>
+        </article>
+
+    </section>
+
+
+</main>
+
+<script src="/script/qatarmuseum.js"></script>
+
+{% render 'partials/foot.liquid' %}
