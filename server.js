@@ -57,11 +57,10 @@ app.get('/gallery', async function (request, response){
     // Fetch the user's liked objects
     const likedResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_users_fabrique_art_objects?filter={"fabrique_users_id":5}`);
     const likedJSON = await likedResponse.json();
-    const likedIds = likedJSON.data.map(item => item.fabrique_art_objects_id); // Extract liked object IDs
-  
-    // Add `is_liked` property to each art object
+    const likedIds = likedJSON.data.map(item => String(item.fabrique_art_objects_id));
+
     apiResponseJSON.data.forEach(obj => {
-      obj.is_liked = likedIds.includes(obj.id);
+      obj.is_liked = likedIds.includes(String(obj.id));
     });
 
     const filter = request.query.filter;
@@ -70,6 +69,9 @@ app.get('/gallery', async function (request, response){
       apiResponseJSON.data = apiResponseJSON.data.filter(obj => obj.is_liked);
     }
     
+    console.log("Liked IDs:", likedIds);
+    console.log("First object ID:", apiResponseJSON.data[0].id, "Liked?", apiResponseJSON.data[0].is_liked);
+
 
   response.render('gallery.liquid', {
     art_objects: apiResponseJSON.data,

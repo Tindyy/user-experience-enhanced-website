@@ -14,7 +14,7 @@
   column-count: 1;
   column-gap: 1em;
   padding: 0.75em;
-
+ 
   @media (min-width: 530px) {
     column-count: 3;
   }
