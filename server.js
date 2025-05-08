@@ -59,6 +59,7 @@ app.get('/gallery', async function (request, response){
     const likedJSON = await likedResponse.json();
     const likedIds = likedJSON.data.map(item => String(item.fabrique_art_objects_id));
 
+    //filter  for all liked objects
     apiResponseJSON.data.forEach(obj => {
       obj.is_liked = likedIds.includes(String(obj.id));
     });
@@ -71,7 +72,15 @@ app.get('/gallery', async function (request, response){
     
     console.log("Liked IDs:", likedIds);
     console.log("First object ID:", apiResponseJSON.data[0].id, "Liked?", apiResponseJSON.data[0].is_liked);
-
+    //
+    //Search bar
+    const searchQuery = request.query.search;
+    if (searchQuery) {
+      const searchLower = searchQuery.toLowerCase();
+      titleResponseJSON.data.data = titleResponseJSON.data.data.filter(obj => 
+        obj.title && obj.title.toLowerCase().includes(searchLower)
+      );
+    }
 
   response.render('gallery.liquid', {
     art_objects: apiResponseJSON.data,

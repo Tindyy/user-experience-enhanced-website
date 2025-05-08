@@ -9,42 +9,69 @@ De instructie vind je in: [INSTRUCTIONS.md](https://github.com/fdnd-task/the-web
 
   * [Beschrijving](#beschrijving)
   * [Gebruik](#gebruik)
-  * [Kenmerken](#kenmerken)
-  * [Installatie](#installatie)
-  * [Bronnen](#bronnen)
-  * [Licentie](#licentie)
+
 
 ## Beschrijving
-<!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
-<!-- Voeg een mooie poster visual of video toe 📸 -->
-<!-- Voeg een link toe naar GitHub Pages 🌐-->
+In the last meeting I had received feedback about the styling of both the gallery and the home page. I Have now styled the homepage hero container and removed the unfinished part underneath the museum container. 
 
-## Gebruik
-<!-- Bij Gebruik staat de user story, hoe het werkt en wat je er mee kan. -->
+In the hero container there is a link to the gallery page.
 
-## Kenmerken
-<!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framework of library gebruikt? -->
+### Gallery
+On the Gallery page I have fixed the styling as well;
 
-## Installatie
-<!-- Bij Installatie staat hoe een andere developer aan jouw repo kan werken -->
+This was the design sketch
+![Image](https://github.com/user-attachments/assets/3d87c6de-348f-446b-81f5-fe857f4f4301)
+
+Instead of using` display grid` and `grid-template-column`, I have used` column-count`. What this does is it creates the column but instead of having a fixed height and width per column and row (which created the gaps) it now creates the columns only and each object gets placed right under each object in a column.
+
+For visuals; this is the before:
+
+![Image](https://github.com/user-attachments/assets/e36447d2-3544-40e3-ab88-06284e94c41d)
+
+And this is the after:
+![Image](https://github.com/user-attachments/assets/92e524c6-4a6c-48ed-b53d-9d9c9da3db9c)
+
+As u can see here there is no more big gaps anymore.
 
 
-## Bronnen
+### POST and filter
 
-Light to Dark mode switch:
-https://www.youtube.com/watch?v=S-T9XoCMwt4&ab_channel=RedStapler
-I used this video for inspiration to make the switch to change the theme of the page. 
-For now the switch will only be on the gallery page, however I did the styling in the styles.css so it can be added on every page if wanted later on.
+Last sprint I made a like button with POST and unlike with DELETE, however it was not complete. The button missed states and also the feedback fot the user to see if the like or unlike had worked. 
+I have now given the like button a state for liked, unliked and hover. 
 
-A user would want to be able to use keyboard navigation to switch the theme from dark to light and vice versa. 
+Another bit of feedback received was that it would be nice to be able to see all liked object together somewhere.
 
-The `<input type="checkbox">` remains focusable because it's only visually hidden `opacity: 0;` instead of `display: none;` or `visibility: hidden;`
-The `input:focus + label` rule adds an orange outline, ensuring users can see which element is focused when navigating with the keyboard.
+To fix this I worked on filter buttons that when u click on this button shows u all liked objects. 
+In my issues u can find video's of ![server side](https://github.com/Tindyy/user-experience-enhanced-website/issues/3#issuecomment-2864146361) and ![Client side](https://github.com/Tindyy/user-experience-enhanced-website/issues/3#issuecomment-2864148447)
 
-progressive enhancement: 
-The checkbox works by default with standard HTML, if styles or JavaScript fail to load, the checkbox is still usable.
-The switch only visually replaces the checkbox but keeps the same functionality.
+Lastly I have created a searchbar to look through the art, however this is still made with JS and will not work when a user has their JS turned off. 
 
+For both the searchbar and the filter buttons I used ```<form> ```
+
+
+
+```
+            <ul class="filter-container">
+                <li class="filter-button">
+                  <form method="GET" action="" >
+                    <button type="submit" name="filter" value="all">All objects</button>
+                  </form>
+                </li>
+                <li class="filter-button">
+                  <form method="GET" action="">
+                    <button type="submit" name="filter" value="liked">Liked objects</button>
+                  </form>
+                </li>
+              </ul>
+```
+
+```
+            <form role="search" action="" class="search-bar" >
+                <label for="search"></label>
+                <input class="search-input" type="search" name="search" placeholder="Look through the art" aria-label="Search for 
+                artwork">
+            </form>
+```
 
 ## Licentie
 
