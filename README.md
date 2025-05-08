@@ -42,7 +42,7 @@ I have now given the like button a state for liked, unliked and hover.
 Another bit of feedback received was that it would be nice to be able to see all liked object together somewhere.
 
 To fix this I worked on filter buttons that when u click on this button shows u all liked objects. 
-In my issues u can find video's of ![server side](https://github.com/Tindyy/user-experience-enhanced-website/issues/3#issuecomment-2864146361) and ![Client side](https://github.com/Tindyy/user-experience-enhanced-website/issues/3#issuecomment-2864148447)
+In my issues u can find video's of ![server side](https://github.com/Tindyy/user-experience-enhanced-website/issues/3#issuecomment-2864146361) (U can see like being send to the API and getting all the liked ID's) and ![Client side](https://github.com/Tindyy/user-experience-enhanced-website/issues/3#issuecomment-2864148447)
 
 Lastly I have created a searchbar to look through the art, however this is still made with JS and will not work when a user has their JS turned off. 
 
@@ -72,6 +72,14 @@ For both the searchbar and the filter buttons I used ```<form> ```
                 artwork">
             </form>
 ```
+
+
+### usertest and other testing
+
+I have done some testing but the only one I have documented is the usertest, other than that I have a web developer extension that I use to disable JS to test the website whilst i'm building. The ![usertest](https://github.com/Tindyy/user-experience-enhanced-website/issues/5#issue-3050071638) can be found in my issues as well, howver i will give a few relevant comments that came up. 
+* The search bar works but with JS off it doesn't work
+* The like button works but it keeps reloading the page which can be annoying
+
 
 ## Licentie
 
