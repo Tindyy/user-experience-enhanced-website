@@ -47,38 +47,37 @@ app.get('/', async function (request, response){
 })
 
 
-app.get('/gallery', async function (request, response) {
-  const filter = request.query.filter; // e.g. 'liked'
+app.get('/gallery', async function (request, response){
+  const apiResponse = await fetch ('https://fdnd-agency.directus.app/items/fabrique_art_objects') 
+  const apiResponseJSON = await apiResponse.json()
 
-  // Fetch all art objects
-  const apiResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects');
-  const apiResponseJSON = await apiResponse.json();
+  const titleResponse = await fetch ('https://fdnd-agency.directus.app/items/fabrique_art_objects/?fields=title')
+  const titleResponseJSON = await titleResponse.json()
 
-  const titleResponse = await fetch('https://fdnd-agency.directus.app/items/fabrique_art_objects/?fields=title');
-  const titleResponseJSON = await titleResponse.json();
+    // Fetch the user's liked objects
+    const likedResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_users_fabrique_art_objects?filter={"fabrique_users_id":5}`);
+    const likedJSON = await likedResponse.json();
+    const likedIds = likedJSON.data.map(item => item.fabrique_art_objects_id); // Extract liked object IDs
+  
+    // Add `is_liked` property to each art object
+    apiResponseJSON.data.forEach(obj => {
+      obj.is_liked = likedIds.includes(obj.id);
+    });
 
-  // Fetch liked object relations
-  const likedResponse = await fetch(`https://fdnd-agency.directus.app/items/fabrique_users_fabrique_art_objects?filter={"fabrique_users_id":5}`);
-  const likedJSON = await likedResponse.json();
-  const likedIds = likedJSON.data.map(item => item.fabrique_art_objects_id);
-
-  // Add is_liked field
-  let artObjects = apiResponseJSON.data.map(obj => {
-    obj.is_liked = likedIds.includes(obj.id);
-    return obj;
-  });
-
-  // If ?filter=liked, filter out only liked ones
-  if (filter === 'liked') {
-    artObjects = artObjects.filter(obj => obj.is_liked);
-  }
+    const filter = request.query.filter;
+    if (filter === 'liked') {
+      // Only keep the liked objects
+      apiResponseJSON.data = apiResponseJSON.data.filter(obj => obj.is_liked);
+    }
+    
 
   response.render('gallery.liquid', {
-    art_objects: artObjects,
+    art_objects: apiResponseJSON.data,
     titles: titleResponseJSON.data
   });
-});
 
+
+})
 
 // GET artObjectDetail
 app.get('/art/:id/', async function (request, response){
