@@ -26,67 +26,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//like animation
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".like-form").forEach((form) => {
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault(); // Prevent page reload
+/*Search bar*/ 
 
-      let button = this.querySelector(".like-button");
-      let action = this.getAttribute("action");
-      let method = this.getAttribute("method");
 
-      let response = await fetch(action, {
-        method: method,
-        body: new FormData(this),
-      });
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.querySelector('.search-input');
+    const objectItems = document.querySelectorAll('.object-container li');
 
-      let data = await response.json();
+    searchInput.addEventListener('input', function () {
+      const searchValue = this.value.toLowerCase();
 
-      if (data.success) {
-        if (data.is_liked) {
-          this.setAttribute("action", action.replace("/like/", "/unlike/"));
-          button.classList.add("active");
-          generateClones(button); // Run animation
+      objectItems.forEach(function (item) {
+        const titleElement = item.querySelector('.object-info p');
+        const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+
+        if (title.includes(searchValue)) {
+          item.style.display = ''; // Show
         } else {
-          this.setAttribute("action", action.replace("/unlike/", "/like/"));
-          button.classList.remove("active");
+          item.style.display = 'none'; // Hide
         }
-      } else {
-        console.error("Error updating like status:", data.message);
-      }
+      });
     });
   });
-});
 
-// ANIMATION FUNCTION
-function generateClones(button) {
-  let clones = randomInt(2, 4);
-  for (let it = 1; it <= clones; it++) {
-    let clone = button.querySelector("svg").cloneNode(true),
-      size = randomInt(5, 16);
-    button.appendChild(clone);
-    clone.setAttribute("width", size);
-    clone.setAttribute("height", size);
-    clone.style.position = "absolute";
-    clone.style.transition =
-      "transform 0.5s cubic-bezier(0.12, 0.74, 0.58, 0.99) 0.3s, opacity 1s ease-out .5s";
-    
-    setTimeout(() => {
-      clone.style.transform =
-        `translate3d(${plusOrMinus() * randomInt(10, 25)}px, ${plusOrMinus() * randomInt(10, 25)}px, 0)`;
-      clone.style.opacity = 0;
-    }, 1);
 
-    setTimeout(() => clone.remove(), 900);
-    setTimeout(() => button.classList.remove("animated"), 600);
-  }
-}
-
-function plusOrMinus() {
-  return Math.random() < 0.5 ? -1 : 1;
-}
-
-function randomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}

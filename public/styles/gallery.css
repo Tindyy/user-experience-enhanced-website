@@ -8,52 +8,30 @@
 
 
 
-
-/**/
-.hero-container {
-  display: flex;
-  align-items: center; 
-  gap: .5em; 
-}
-
-.hero-img img,
-.gallery-hero-img img {
-  max-width: 100%; 
-  height: auto;
-}
-
-.gallery-hero-img h2 {
-  margin-bottom: .5em; 
-}
-
-.gallery-hero-img a {
-  text-decoration: none;
-  color: var(--color-primary); 
-  font-weight: bold;
-}
-
-
-
 /*object container*/
 
-.object-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: .15em;
-    animation: scrollLoop 10s linear infinite;
-    padding: .75em;
+.object-container {
+  column-count: 1;
+  column-gap: 1em;
+  padding: 0.75em;
 
-   @media (min-width: 530px) {
-    grid-template-columns: repeat(3,1fr);
-    }
-   
-   @media (min-width: 800px) {
-    grid-template-columns: repeat(3,1fr);
-    }
-   
-   @media (min-width: 1480px) {
-    grid-template-columns: repeat(4,1fr);
-    }
+  @media (min-width: 530px) {
+    column-count: 3;
+  }
+
+  @media (min-width: 800px) {
+    column-count: 3;
+  }
+
+  @media (min-width: 1480px) {
+    column-count: 4;
+  }
+}
+
+.object-container li {
+  break-inside: avoid;
+  margin-bottom: 1em;
+  list-style: none;
 }
  
  
@@ -62,27 +40,69 @@
 }
 
 
-.object img{
-    border-radius: 2.5%;
-    width: 35vw;
-    box-shadow: var(--black);
-    
-
-    @media (min-width: 530px) {
-        width: 26vw;
-
-    }
-   
-   @media (min-width: 800px) {
-      width: 29vw;
-   
-    }
-   
-   @media (min-width: 1480px) {
-      width: 23vw;
-   
-    }
+.object {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+  margin-bottom: 2em;
 }
+
+@media (min-width: 530px) {
+  .object:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+}
+
+.object img{
+  box-shadow: var(--black);
+  width: 100%;
+  
+
+  @media (min-width: 530px) {
+      width: 26vw;
+
+  }
+ 
+ @media (min-width: 800px) {
+    width: 29vw;
+ 
+  }
+ 
+ @media (min-width: 1480px) {
+    width: 23vw;
+ 
+  }
+}
+
+.object-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+.object-info.dark-mode{
+  background-color: var(--color-white);
+}
+
+.object-info p {
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.like-button {
+  width: 2.5vw;
+}
+
+.like-button:hover {
+  transform: scale(1.5);
+}
+
+
 
 /*filter and search section*/
 

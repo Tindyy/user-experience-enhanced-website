@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "din";
+    src: url(/public/assets/fonts/93a467f70a3e7b27a9b52a686f351dbe.woff) format('woff'),
+         url(/public/assets/fonts/93a467f70a3e7b27a9b52a686f351dbe.ttf) format('truetype');
+}
+
+
 :root{
 
     /*Breakpoints*/
@@ -16,6 +23,7 @@
    --color-magenta: #e83082;
    --color-dark-grey: #222222;
 
+
    --transparency-overlay: rgba(255, 255, 255, 0.8);
    --transparency-background: rgba(0, 0, 0, 0.55);
    --transparency-button: rgba(0, 0, 0, 0.33);
@@ -27,7 +35,7 @@
    --border-white: 1px solid #fff;
 
    /* colors for the switch */
-   --swicth-darkmode-background: #ffffff;
+   --switch-darkmode-background: #ffffff;
    --switch-darkmode: linear-gradient(180deg, #f6c343, #d8860b) ;
    --switch-darkmode-box-shadow: inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255,255,255,0.4);
 
@@ -80,9 +88,16 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "din", 'Times New Roman', Times, serif;
 }
 
 /* Dark Mode */
+
+header.dark-mode{
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
+}
+
 body.dark-mode {
     background-color: var(--color-dark-grey);
     color: var(--color-white);
@@ -93,13 +108,13 @@ body.dark-mode a {
 }
 
 body.dark-mode button {
-    background-color: var(--color-orange);
+    background-color: none;
     color: var(--color-dark-grey);
-    border: 1px solid var(--color-black);
+    border: none;
 }
 
 body.dark-mode button:hover {
-    background-color: var(--color-magenta);
+    background-color: none;
     color: var(--color-white);
 }
 
@@ -231,7 +246,7 @@ label.switch::after {
 
 /* Checked state */
 input.switch:checked + label {
-    background: var(--swicth-darkmode-background);
+    background: var(--switch-darkmode-background);
 }
 
 input.switch:checked + label::after {
